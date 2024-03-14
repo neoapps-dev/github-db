@@ -33,8 +33,8 @@ export default async function handler(req: ServerRequest) {
 
   switch (method) {
     case 'POST':
-      const bodyJson = await req.json();
-      if (await saveData(loc, bodyJson)) {
+      const body = await req.json();
+      if (await saveData(loc, body)) {
         req.respond({ status: 200, body: 'Data saved successfully' });
       } else {
         req.respond({ status: 500, body: 'Error saving data' });
@@ -53,4 +53,4 @@ export default async function handler(req: ServerRequest) {
     default:
       req.respond({ status: 405, body: `Method ${method} Not Allowed` });
   }
-          }
+}
